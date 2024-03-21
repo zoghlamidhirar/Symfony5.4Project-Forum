@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="{{ asset('ForumNavbar/Main.css') }}"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+		<title>Al3eb</title>
+	</head>
+	<body>
+		<header>
+			<div class="navbar">
+				<div class="logo">
+					<a href="{{ path('front')}}">Al3eb</a>
+
+				</div>
+				<ul class="links">
+					<li>
+						<a href="#">Home</a>
+					</li>
+					<li>
+						<a href="#">Forum Guidelines</a>
+					</li>
+					<li>
+						<a href="#">Services</a>
+					</li>
+					<li>
+						<a href="#">FAQ</a>
+					</li>
+				</ul>
+				<a href="#" class="action_btn">Get started</a>
+				<div class="toggle_btn">
+					<i class="fa-solid fa-bars"></i>
+				</div>
+			</div>
+			<div class="dropdown_menu">
+				<li>
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<a href="#">Forum Guidelines</a>
+				</li>
+				<li>
+					<a href="#">Services</a>
+				</li>
+				<li>
+					<a href="#">FAQ</a>
+				</li>
+				<li>
+					<a href="#" class="action_btn">Get started</a>
+				</li>
+			</div>
+		</header>
+		<main>
+			<section id="hero">
+				<h1 style="text-align: center; color: #fff;">Add New Thread</h1>
+
+				{{ form_start(threadForm) }}
+				<div style="margin: 0 auto; width: 80%;">
+					<div style="margin-bottom: 20px;">
+						{{ form_label(threadForm.titleThread, 'Thread Title', {'label_attr': {'style': 'color: #000; display: block;'}}) }}
+						{{ form_widget(threadForm.titleThread, {'attr': {'id': 'thread_title', 'class': 'form-control', 'style': 'width: 100%; padding: 5px; border: 2px solid #ccc; border-radius: 4px;', 'placeholder': 'Enter thread title'}}) }}
+						{% if errors.titleThread is defined %}
+							<p style="color: red;">{{ errors.titleThread }}</p>
+						{% endif %}
+					</div>
+					<div style="margin-bottom: 20px;">
+						{{ form_label(threadForm.creationDateThread, 'Creation Date', {'label_attr': {'style': 'color: #000; display: block;'}}) }}
+						{{ form_widget(threadForm.creationDateThread, {'attr': {'id': 'creation_date', 'class': 'form-control', 'style': 'width: 100%; padding: 5px; border: 2px solid #ccc; border-radius: 4px;', 'placeholder': 'Enter creation date'}}) }}
+						{% if errors.creationDateThread is defined %}
+							<p style="color: red;">{{ errors.creationDateThread }}</p>
+						{% endif %}
+					</div>
+					<div style="margin-bottom: 20px;">
+						{{ form_label(threadForm.forum, 'Forum', {'label_attr': {'style': 'color: #000; display: block;'}}) }}
+						{{ form_widget(threadForm.forum, {'attr': {'id': 'forum', 'class': 'form-control', 'style': 'width: 100%; padding: 5px; border: 2px solid #ccc; border-radius: 4px;'}}) }}
+					</div>
+					<div style="margin-bottom: 20px;">
+						{{ form_label(threadForm.user, 'User', {'label_attr': {'style': 'color: #000; display: block;'}}) }}
+						{{ form_widget(threadForm.user, {'attr': {'id': 'user', 'class': 'form-control', 'style': 'width: 100%; padding: 5px; border: 2px solid #ccc; border-radius: 4px;'}}) }}
+					</div>
+					<div></div>
+
+
+					<div>
+						{{ form_widget(threadForm.submit, {'attr': {'style': 'padding: 10px; background-color: red; color: #fff; border: none; border-radius: 4px; cursor: pointer;'}}) }}
+					</div>
+				</div>
+				{{ form_end(threadForm) }}
+
+
+			</section>
+
+		</main>
+
+		<script>
+			const toggleBtn = document.querySelector(".toggle_btn");
+const toggleBtnIcon = document.querySelector(".toggle_btn i");
+const dropDownMenu = document.querySelector(".dropdown_menu");
+
+toggleBtn.onclick = function () {
+dropDownMenu.classList.toggle("open");
+const isOpen = dropDownMenu.classList.contains("open");
+
+toggleBtnIcon.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+};
+		</script>
+	</body>
+</html>

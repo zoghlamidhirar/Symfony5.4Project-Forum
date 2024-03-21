@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="{{ asset('ForumNavbar/Main.css') }}"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+		<title>Al3eb</title>
+	</head>
+	<body>
+		<header>
+			<div class="navbar">
+				<div class="logo">
+					<a href="{{ path('front')}}">Al3eb</a>
+
+				</div>
+				<ul class="links">
+					<li>
+						<a href="#">Home</a>
+					</li>
+					<li>
+						<a href="#">Forum Guidelines</a>
+					</li>
+					<li>
+						<a href="#">Services</a>
+					</li>
+					<li>
+						<a href="#">FAQ</a>
+					</li>
+				</ul>
+				<a href="#" class="action_btn">Get started</a>
+				<div class="toggle_btn">
+					<i class="fa-solid fa-bars"></i>
+				</div>
+			</div>
+			<div class="dropdown_menu">
+				<li>
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<a href="#">Forum Guidelines</a>
+				</li>
+				<li>
+					<a href="#">Services</a>
+				</li>
+				<li>
+					<a href="#">FAQ</a>
+				</li>
+				<li>
+					<a href="#" class="action_btn">Get started</a>
+				</li>
+			</div>
+		</header>
+		<main>
+			<section id="hero">
+				<h1 style="text-align: center; color: #fff;">Add New Post</h1>
+
+				{{ form_start(postForm) }}
+				<div style="margin: 0 auto; width: 80%;">
+					<div style="margin-bottom: 20px;">
+						{{ form_label(postForm.contentPost, 'Post Content', {'label_attr': {'style': 'display: block; color: #000;'}}) }}
+						{{ form_widget(postForm.contentPost, {'attr': {'id': 'contentPost', 'style': 'width: 100%; padding: 5px; border: 2px solid #ccc; border-radius: 4px;', 'placeholder': 'Enter post content'}}) }}
+						{% if form_errors(postForm.contentPost) %}
+							<p style="color: red;">{{ form_errors(postForm.contentPost) }}</p>
+						{% endif %}
+					</div>
+					<div style="margin-bottom: 20px;">
+						{{ form_label(postForm.creationDatePost, 'Creation Date', {'label_attr': {'style': 'display: block; color: #000;'}}) }}
+						{{ form_widget(postForm.creationDatePost, {'attr': {'id': 'creationDatePost', 'style': 'width: 100%; padding: 5px; border: 2px solid #ccc; border-radius: 4px;', 'placeholder': 'Enter creation date in YYYY-MM-DD format'}}) }}
+						{% if form_errors(postForm.creationDatePost) %}
+							<p style="color: red;">{{ form_errors(postForm.creationDatePost) }}</p>
+						{% endif %}
+					</div>
+					<div style="margin-bottom: 20px;">
+						{{ form_label(postForm.user, 'User', {'label_attr': {'style': 'display: block; color: #000;'}}) }}
+						{{ form_widget(postForm.user, {'attr': {'style': 'width: 100%; padding: 5px; border: 2px solid #ccc; border-radius: 4px;', 'placeholder': 'Enter user'}}) }}
+						{% if form_errors(postForm.user) %}
+							<p style="color: red;">{{ form_errors(postForm.user) }}</p>
+						{% endif %}
+					</div>
+					<div></div>
+
+					<div>
+						{{ form_widget(postForm.submit, {'attr': {'style': 'padding: 10px; background-color: red; color: #fff; border: none; border-radius: 4px; cursor: pointer;'}}) }}
+					</div>
+				</div>
+				{{ form_end(postForm) }}
+
+
+			</section>
+		</main>
+
+
+		<script>
+			const toggleBtn = document.querySelector(".toggle_btn");
+const toggleBtnIcon = document.querySelector(".toggle_btn i");
+const dropDownMenu = document.querySelector(".dropdown_menu");
+
+toggleBtn.onclick = function () {
+dropDownMenu.classList.toggle("open");
+const isOpen = dropDownMenu.classList.contains("open");
+
+toggleBtnIcon.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+};
+		</script>
+		<script src="{{ asset('ForumNavbar/postformvalidation.js') }}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="{{ asset('ForumNavbar/Main.css') }}"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+		<title>Al3eb</title>
+	</head>
+	<body>
+		<header>
+			<div class="navbar">
+				<div class="logo">
+					<a href="{{ path('front')}}">Al3eb</a>
+
+				</div>
+				<ul class="links">
+					<li>
+						<a href="#">Home</a>
+					</li>
+					<li>
+						<a href="#">Forum Guidelines</a>
+					</li>
+					<li>
+						<a href="#">Services</a>
+					</li>
+					<li>
+						<a href="#">FAQ</a>
+					</li>
+				</ul>
+				<a href="#" class="action_btn">Get started</a>
+				<div class="toggle_btn">
+					<i class="fa-solid fa-bars"></i>
+				</div>
+			</div>
+			<div class="dropdown_menu">
+				<li>
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<a href="#">Forum Guidelines</a>
+				</li>
+				<li>
+					<a href="#">Services</a>
+				</li>
+				<li>
+					<a href="#">FAQ</a>
+				</li>
+				<li>
+					<a href="#" class="action_btn">Get started</a>
+				</li>
+			</div>
+		</header>
+		<main>
+			<section id="hero">
+				<h1 style="text-align: center; color: #fff;">List of Forums</h1>
+
+				{% if forums is empty %}
+					<h1 style="text-align: center; color: #fff;">No Forum found</h1>
+				{% else %}
+					<table border="0" style="margin: 0 auto; width: 80%; border-collapse: collapse;">
+						{% for forum in forums %}
+							<tr>
+								<td style="padding: 10px; color: #fff;">{{ forum.nameForum }}</td>
+								<td style="padding: 10px; color: #fff;">{{ forum.descriptionForum }}</td>
+								<td style="padding: 10px;">
+									<a href="{{ path('list_thread', { forumId: forum.forumId }) }}" style="color: red; text-decoration: none;">Check it</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+
+			</section>
+		</main>
+
+		<script>
+			const toggleBtn = document.querySelector(".toggle_btn");
+const toggleBtnIcon = document.querySelector(".toggle_btn i");
+const dropDownMenu = document.querySelector(".dropdown_menu");
+
+toggleBtn.onclick = function () {
+dropDownMenu.classList.toggle("open");
+const isOpen = dropDownMenu.classList.contains("open");
+
+toggleBtnIcon.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+};
+		</script>
+	</body>
+</html>
